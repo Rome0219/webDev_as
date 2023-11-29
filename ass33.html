@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Demo</title>
+    <!-- Include jQuery and jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        /* Add your custom styles here */
+        .draggable {
+            width: 150px;
+            height: 150px;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            line-height: 150px;
+            cursor: move;
+        }
+
+        .droppable {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed #2ecc71;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .resizable {
+            width: 150px;
+            height: 150px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: center;
+            line-height: 150px;
+            resize: both;
+            overflow: auto;
+        }
+
+        .selectable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 300px;
+        }
+
+        .selectable li {
+            margin: 3px;
+            padding: 0.4em;
+            font-size: 1.4em;
+            height: 18px;
+        }
+
+        .accordion-container {
+            width: 300px;
+        }
+
+        .autocomplete-container {
+            margin-top: 20px;
+        }
+
+        .datepicker-container {
+            margin-top: 20px;
+        }
+
+        .slider-container {
+            margin-top: 20px;
+        }
+
+        .effect-container {
+            margin-top: 20px;
+        }
+
+        .color-animation-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Interactions -->
+    <div class="draggable">Drag me!</div>
+
+    <div class="droppable">
+        Drop here!
+    </div>
+
+    <div class="resizable">Resize me!</div>
+
+    
+
+    <!-- Widgets -->
+    <div class="accordion-container">
+        <div id="accordion">
+            <h3>Section 1</h3>
+            <div>
+                <p>Content for section 1.</p>
+            </div>
+            <h3>Section 2</h3>
+            <div>
+                <p>Content for section 2.</p>
+            </div>
+            <h3>Section 3</h3>
+            <div>
+                <p>Content for section 3.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="autocomplete-container">
+        <label for="autocomplete">Choose a programming language: </label>
+        <input id="autocomplete">
+    </div>
+
+    <div class="datepicker-container">
+        <label for="datepicker">Select a date: </label>
+        <input type="text" id="datepicker">
+    </div>
+
+    <div class="slider-container">
+        <div id="slider"></div>
+    </div>
+
+    <!-- Effects -->
+    <div class="effect-container">
+        <button id="show">Show</button>
+        <button id="hide">Hide</button>
+        <div id="explode" style="width: 100px; height: 100px; background-color: #f39c12;"></div>
+        <div id="fade" style="width: 100px; height: 100px; background-color: #8e44ad;"></div>
+    </div>
+
+    <div class="color-animation-container">
+        <div id="color-animation" style="width: 100px; height: 100px; background-color: #3498db;"></div>
+    </div>
+
+    <script>
+        // Initialize Draggable
+        $(".draggable").draggable();
+
+        // Initialize Droppable
+        $(".droppable").droppable({
+            drop: function (event, ui) {
+                $(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+            }
+        });
+
+        // Initialize Resizable
+        $(".resizable").resizable();
+
+        // Initialize Selectable
+        $(".selectable").selectable();
+
+        // Initialize Accordion
+        $("#accordion").accordion();
+
+        // Initialize Autocomplete
+        var programmingLanguages = ["Java", "JavaScript", "Python", "C#", "Ruby", "Go"];
+        $("#autocomplete").autocomplete({
+            source: programmingLanguages
+        });
+
+        // Initialize Datepicker
+        $("#datepicker").datepicker();
+
+        // Initialize Slider
+        $("#slider").slider();
+
+        // Initialize Effects
+        $("#show").on("click", function () {
+            $("#explode").show("explode", 1000);
+        });
+
+        $("#hide").on("click", function () {
+            $("#explode").hide("explode", 1000);
+        });
+
+        $("#explode").on("click", function () {
+            $(this).effect("explode", { pieces: 16 }, 1000);
+        });
+
+        $("#fade").on("mouseover", function () {
+            $(this).fadeOut(500).fadeIn(500);
+        });
+
+        // Color Animation
+        $("#color-animation").on("click", function () {
+            $(this).animate({ backgroundColor: "#e74c3c" }, 1000);
+        });
+    </script>
+
+</body>
+</html>
